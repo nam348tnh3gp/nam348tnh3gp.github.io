@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PixPack · SocksHttpGate · goR</title>
+  <style>
+    :root {
+      --bg: #08080d;
+      --card: #14141e;
+      --border: #222233;
+      --text: #f0f0f8;
+      --muted: #8888a0;
+      --cyan: #00e5ff;
+      --pink: #ff3d8a;
+      --green: #3dff7a;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.55;
+      min-height: 100vh;
+    }
+
+    header {
+      padding: 4rem 1.5rem 3rem;
+      text-align: center;
+      background:
+        radial-gradient(ellipse 80% 50% at 50% -20%, rgba(0, 229, 255, 0.12), transparent),
+        var(--bg);
+      border-bottom: 1px solid var(--border);
+    }
+
+    header img {
+      max-width: min(700px, 94vw);
+      height: auto;
+      border-radius: 10px;
+      box-shadow: 0 0 40px rgba(0, 229, 255, 0.15);
+    }
+
+    .tagline {
+      margin-top: 1.25rem;
+      font-size: 0.95rem;
+      color: var(--muted);
+      letter-spacing: 0.04em;
+    }
+
+    main {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 3.5rem 1.5rem 5rem;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+
+    @media (max-width: 900px) {
+      .grid { grid-template-columns: 1fr; max-width: 440px; margin: 0 auto; }
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 1.75rem;
+      display: flex;
+      flex-direction: column;
+      transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
+    }
+
+    .card:hover {
+      border-color: #33334a;
+      transform: translateY(-5px);
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.45);
+    }
+
+    .card .label {
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 0.85rem;
+    }
+
+    .card.pixpack .label { color: var(--cyan); }
+    .card.socks .label   { color: var(--pink); }
+    .card.gor .label     { color: var(--green); }
+
+    .card h2 {
+      font-size: 1.4rem;
+      font-weight: 700;
+      margin-bottom: 0.6rem;
+    }
+
+    .card p {
+      color: var(--muted);
+      font-size: 0.92rem;
+      margin-bottom: 1.25rem;
+      flex-grow: 1;
+    }
+
+    .card ul {
+      list-style: none;
+      margin-bottom: 1.5rem;
+    }
+
+    .card ul li {
+      font-size: 0.88rem;
+      color: #b0b0c4;
+      padding: 0.22rem 0 0.22rem 1rem;
+      position: relative;
+    }
+
+    .card ul li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0.7em;
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      opacity: 0.7;
+    }
+
+    .card.pixpack ul li::before { background: var(--cyan); }
+    .card.socks ul li::before   { background: var(--pink); }
+    .card.gor ul li::before     { background: var(--green); }
+
+    .actions {
+      display: flex;
+      gap: 0.6rem;
+      flex-wrap: wrap;
+    }
+
+    a.btn {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.48rem 1rem;
+      border-radius: 8px;
+      font-size: 0.86rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: opacity 0.15s, transform 0.15s;
+    }
+
+    a.btn:hover { opacity: 0.9; transform: scale(1.03); }
+
+    a.btn-solid {
+      background: var(--cyan);
+      color: #000;
+    }
+
+    .card.socks a.btn-solid { background: var(--pink); }
+    .card.gor a.btn-solid   { background: var(--green); color: #000; }
+
+    a.btn-outline {
+      background: transparent;
+      color: var(--text);
+      border: 1px solid var(--border);
+    }
+
+    a.btn-outline:hover {
+      border-color: #3a3a52;
+      background: rgba(255,255,255,0.03);
+    }
+
+    footer {
+      text-align: center;
+      padding: 1.75rem;
+      border-top: 1px solid var(--border);
+      font-size: 0.82rem;
+      color: var(--muted);
+    }
+
+    footer a {
+      color: var(--cyan);
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <img
+      src="https://gor-mez8.onrender.com/render.gif?text=TOOLS&effect=glitch&font=monobold&w=700&h=100&size=72&c1=00e5ff&bg=08080d&fps=14&dur=3&seed=7"
+      alt="TOOLS"
+      width="700"
+      height="100"
+    />
+    <p class="tagline">Three focused tools</p>
+  </header>
+
+  <main>
+    <div class="grid">
+
+      <article class="card pixpack">
+        <div class="label">Data → Image</div>
+        <h2>PixPack</h2>
+        <p>
+          Encode any text, URL, Wi-Fi credentials, image or binary file into PNG images — and decode them back perfectly.
+        </p>
+        <ul>
+          <li>Pixel PNG, Color Grid & QR formats</li>
+          <li>Wi-Fi QR (WPA / WPA2 / WPA3)</li>
+          <li>Parallel compression (CMX1, Brotli, Zstd…)</li>
+          <li>Web UI + CLI</li>
+        </ul>
+        <div class="actions">
+          <a class="btn btn-solid" href="https://pixpack.onrender.com/" target="_blank" rel="noopener">Demo</a>
+          <a class="btn btn-outline" href="https://github.com/nam348tnh3gp/pixpack" target="_blank" rel="noopener">GitHub</a>
+        </div>
+      </article>
+
+      <article class="card socks">
+        <div class="label">Proxy</div>
+        <h2>SocksHttpGate</h2>
+        <p>
+          SOCKS5 and HTTP/S proxy on a single port, with standalone DoH, DoT and ODoH services. Multiple language implementations.
+        </p>
+        <ul>
+          <li>SOCKS5 + HTTP on one port</li>
+          <li>DoH · DoT · ODoH</li>
+          <li>Python, Go, C, Node, Java…</li>
+          <li>Auth & dashboard</li>
+        </ul>
+        <div class="actions">
+          <a class="btn btn-solid" href="https://github.com/nam348tnh3gp/SocksHttpGate" target="_blank" rel="noopener">GitHub</a>
+        </div>
+      </article>
+
+      <article class="card gor">
+        <div class="label">Visual</div>
+        <h2>goR</h2>
+        <p>
+          Lightweight API that generates animated text GIFs with 17 digital-distortion and retro effects. Perfect for banners and Discord.
+        </p>
+        <ul>
+          <li>17 effects (glitch, VHS, RGB, type…)</li>
+          <li>Built-in + custom fonts</li>
+          <li>Transparent background & seed</li>
+          <li>Cache + CORS ready</li>
+        </ul>
+        <div class="actions">
+          <a class="btn btn-solid" href="https://gor-mez8.onrender.com" target="_blank" rel="noopener">Demo</a>
+          <a class="btn btn-outline" href="https://github.com/TGFN/goR" target="_blank" rel="noopener">GitHub</a>
+        </div>
+      </article>
+
+    </div>
+  </main>
+
+  <footer>
+    Banner by <a href="https://github.com/TGFN/goR" target="_blank" rel="noopener">goR</a>
+  </footer>
+
+</body>
+</html>
