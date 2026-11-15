@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>PixPack · SocksHttpGate · goR</title>
+  <title>PixPack · SocksHttpGate · goR · Tunnel</title>
   <style>
     :root {
       --bg: #08080d;
@@ -16,6 +16,7 @@
       --cyan: #00e5ff;
       --pink: #ff3d8a;
       --green: #3dff7a;
+      --orange: #ffa238;
       --radius: 18px;
       --ease: cubic-bezier(0.22, 1, 0.36, 1);
     }
@@ -67,19 +68,24 @@
     main {
       flex: 1;
       width: 100%;
-      max-width: 1120px;
+      max-width: 1240px;
       margin: 0 auto;
       padding: clamp(2.5rem, 5vw, 4rem) clamp(1.25rem, 3vw, 1.75rem);
     }
 
+    /* 4 columns on wide screens, 2 on tablets, 1 on phones */
     .grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(4, 1fr);
       gap: clamp(1.1rem, 2.5vw, 1.6rem);
       align-items: stretch;
     }
 
-    @media (max-width: 860px) {
+    @media (max-width: 1100px) {
+      .grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 640px) {
       .grid {
         grid-template-columns: 1fr;
         max-width: 420px;
@@ -119,6 +125,7 @@
     .card.pixpack .label { color: var(--cyan); }
     .card.socks .label   { color: var(--pink); }
     .card.gor .label     { color: var(--green); }
+    .card.tunnel .label  { color: var(--orange); }
 
     .card h2 {
       font-size: clamp(1.25rem, 2.5vw, 1.4rem);
@@ -160,6 +167,7 @@
     .card.pixpack ul li::before { background: var(--cyan); }
     .card.socks ul li::before   { background: var(--pink); }
     .card.gor ul li::before     { background: var(--green); }
+    .card.tunnel ul li::before  { background: var(--orange); }
 
     .actions {
       display: flex;
@@ -192,8 +200,9 @@
       color: #000;
     }
 
-    .card.socks a.btn-solid { background: var(--pink); color: #fff; }
-    .card.gor a.btn-solid   { background: var(--green); color: #000; }
+    .card.socks a.btn-solid  { background: var(--pink); color: #fff; }
+    .card.gor a.btn-solid    { background: var(--green); color: #000; }
+    .card.tunnel a.btn-solid { background: var(--orange); color: #000; }
 
     a.btn-outline {
       background: transparent;
@@ -240,6 +249,7 @@
     .card:nth-child(1) { animation-delay: 0.05s; }
     .card:nth-child(2) { animation-delay: 0.15s; }
     .card:nth-child(3) { animation-delay: 0.25s; }
+    .card:nth-child(4) { animation-delay: 0.35s; }
 
     header img {
       animation: fadeUp 0.6s var(--ease) both;
@@ -247,6 +257,10 @@
 
     .tagline {
       animation: fadeUp 0.6s var(--ease) 0.12s both;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .card, header img, .tagline { animation: none; }
     }
   </style>
 </head>
@@ -259,7 +273,7 @@
       width="700"
       height="100"
     />
-    <p class="tagline">Three focused tools</p>
+    <p class="tagline">Four focused tools</p>
   </header>
 
   <main>
@@ -315,6 +329,24 @@
         <div class="actions">
           <a class="btn btn-solid" href="https://gor-mez8.onrender.com" target="_blank" rel="noopener">Demo</a>
           <a class="btn btn-outline" href="https://github.com/TGFN/goR" target="_blank" rel="noopener">GitHub</a>
+        </div>
+      </article>
+
+      <article class="card tunnel">
+        <div class="label">Android</div>
+        <h2>Tunnel</h2>
+        <p>
+          Run Cloudflare Tunnel (cloudflared) on your Android phone. Expose a local service with a token or a temporary quick URL, and keep it alive in the background.
+        </p>
+        <ul>
+          <li>Quick (try) &amp; Token modes</li>
+          <li>Foreground service + auto-restart</li>
+          <li>Encrypted token, saved settings</li>
+          <li>ARM64 · ARMv7 · x86_64 APKs</li>
+        </ul>
+        <div class="actions">
+          <a class="btn btn-solid" href="https://github.com/nam348tnh3gp/Tunnel/releases" target="_blank" rel="noopener">Download</a>
+          <a class="btn btn-outline" href="https://github.com/nam348tnh3gp/Tunnel" target="_blank" rel="noopener">GitHub</a>
         </div>
       </article>
 
